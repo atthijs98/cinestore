@@ -1,0 +1,73 @@
+bestellen
+	account ? automatisch adres gegevens
+	niet ? bestellen als gast
+==============================================
+user
+	email adres,
+	wachtwoord,
+	id,
+	voornaam,
+	achternaam,
+	tussenvoegsel,
+	geboorte datum,
+	adres_id (null),
+		straat (not null)
+		huisnummer (not null)
+		postcode (not null)
+--------------------------------------
+	account aanmaken
+	inloggen
+	meerdere adressen toevoegen en beheren
+	bestel geschiedenis bekijken
+===================================================
+admin
+	id,
+	wachtwoord,
+	voornaam,
+	tussen,
+	achternaam,
+	geboorte,
+------------------------------
+inloggen
+bestellingen zien 
+producten beheren
+klanten beheren
+genres beheren
+================================
+product
+
+id,
+artcle nummer,
+naam,
+gegevensopslag,
+meerdere regisseur,
+meerdere schrijvers,
+run time,
+pictures meerdere,
+genre meerdere,
+poster one,
+plot,
+jaar,
+prijs
+
+======================================
+
+filter functionaliteit
+
+sort:
+	alfabtisch
+	jaar
+filter:
+	regisseur
+	decade
+	genre
+
+========================================
+
+
+
+
+
+
+	
+	
