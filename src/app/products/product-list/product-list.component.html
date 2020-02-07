@@ -1,0 +1,16 @@
+<div class="row" style="margin-top: 20px">
+  <div class="col s12">
+    <a class="waves-effect waves-light btn" (click)="onNewProduct()">New Product</a>
+  </div>
+</div>
+<div class="divider"></div>
+<div class="row">
+  <div class="col s12">
+    <app-product-item
+      *ngFor="let productEl of products"
+      [product]="productEl" [id]="productEl.id"></app-product-item>
+  </div>
+</div>
+
+
+

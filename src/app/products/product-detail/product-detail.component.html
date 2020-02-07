@@ -1,0 +1,97 @@
+<div class="hide-on-med-and-down">
+  <div class="row" style="margin-top: 20px">
+    <div class="col s12">
+      <a class="waves-effect waves-light btn" style="visibility: hidden">New Product</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s4">
+      <img [src]="product.poster" alt="{{product.en_title}}" class="responsive-img" style="max-height: 250px;">
+    </div>
+    <div class="col s8">
+      <h3>{{product.en_title}}</h3>
+      <p *ngIf="product.original_title">{{product.original_title}} <span
+        *ngIf="product.romanized_original_title">| {{product.romanized_original_title}}</span></p>
+      <p style="text-transform: uppercase"> Directed by</p>
+      <p style="font-weight: bold"><span *ngFor="let director of directors">{{director.firstName}}<span
+        *ngIf="director.middleName"> {{director.middleName}}</span> {{director.lastName}} </span></p>
+      <p>{{product.year}} | {{product.runtime}} mins<span class="right"
+                                                          style="text-transform: uppercase"><a
+        href="https://www.youtube.com/watch?v={{product.trailer}}">trailer</a></span></p>
+      <div class="divider"></div>
+      {{product.plot}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12">
+      <a class='dropdown-trigger btn' data-target='dropdown1'><i class="material-icons right">arrow_drop_down</i> Manage
+        product</a>
+      <ul id='dropdown1' class='dropdown-content'>
+        <li><a (click)="toShoppingList()" style="cursor: pointer">To shopping list</a></li>
+        <li><a (click)="onEditProduct()" style="cursor: pointer">Edit product</a></li>
+        <li><a (click)="onDeleteProduct(product.id)" style="cursor: pointer">Delete product</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12">
+      <div *ngIf="images.length" class="carousel carousel-slider">
+        <a *ngFor="let image of images; let last = last" class="carousel-item">
+          <img [src]="image.path"/>
+          <ng-container *ngIf="last && !initialized">{{ initCarousel() }}</ng-container>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="mobile">
+  <div class="hide-on-large-only">
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <div *ngIf="images.length" class="carousel carousel-slider">
+            <a *ngFor="let image of images; let last = last" class="carousel-item">
+              <img [src]="image.path"/>
+              <ng-container *ngIf="last && !initialized">{{ initCarousel()}}</ng-container>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s8">
+          <h5>{{product.en_title}}</h5>
+          <p *ngIf="product.original_title">{{product.original_title}} <span
+            *ngIf="product.romanized_original_title">| {{product.romanized_original_title}}</span></p>
+          <p style="text-transform: uppercase"> Directed by</p>
+          <p style="font-weight: bold"><span *ngFor="let director of directors">{{director.firstName}}<span
+            *ngIf="director.middleName"> {{director.middleName}}</span> {{director.lastName}}
+          </span></p>
+          <p>{{product.year}} | {{product.runtime}} mins<span class="right"
+                                                              style="text-transform: uppercase"><a
+            href="https://www.youtube.com/watch?v={{product.trailer}}">trailer</a></span></p>
+          <div class="divider"></div>
+          <p class="flow-text">{{product.plot}}</p>
+        </div>
+        <div class="col s4">
+          <img class="responsive-img" [src]="product.poster"/>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="row" style="margin-top: 20px">
+        <div class="col s12">
+          <a class="btn-floating btn-large waves-effect waves-light red dropdown-trigger right" data-target='dropdown1'><i
+            class="material-icons">more_vert</i></a>
+          <ul id='dropdown1' class='dropdown-content'>
+            <li><a (click)="toShoppingList()" style="cursor: pointer">To shopping list</a></li>
+            <li><a (click)="onEditProduct()" style="cursor: pointer">Edit product</a></li>
+            <li><a (click)="onDeleteProduct(product.id)" style="cursor: pointer">Delete product</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="divider"></div>
+    </div>
+  </div>
+</ng-container>
+
+

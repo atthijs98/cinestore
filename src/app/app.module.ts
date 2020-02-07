@@ -7,9 +7,24 @@ import {FooterComponent} from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import {RouterModule} from '@angular/router';
-import {AppRouting} from './app.routing';
-import {appRoutingModule} from './app.routing';
-import { HomeComponent } from './home/home.component';
+import {AppRoutingModule} from './app-routing.module';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ProductsComponent } from './products/products.component';
+import { ProductItemComponent } from './products/product-list/product-item/product-item.component';
+import { ProductEditComponent } from './products/product-edit/product-edit.component';
+import { ProductDetailComponent } from './products/product-detail/product-detail.component';
+import { ProductStartComponent } from './products/product-start/product-start.component';
+import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
+import {ShoppingListService} from './shopping-list/shopping-list.service';
+import {ProductListComponent} from './products/product-list/product-list.component';
+import {ProductService} from './products/product.service';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ProductDirectorService} from './shared/product-director.service';
+import {ProductImageService} from './shared/product-image.service';
+import { ContactComponent } from './contact/contact.component';
+
+
 
 @NgModule({
   declarations: [
@@ -18,15 +33,25 @@ import { HomeComponent } from './home/home.component';
     FooterComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    PageNotFoundComponent,
+    ProductsComponent,
+    ProductItemComponent,
+    ProductEditComponent,
+    ProductDetailComponent,
+    ProductStartComponent,
+    ShoppingListComponent,
+    ShoppingEditComponent,
+    ProductListComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
     RouterModule,
-    AppRouting,
-    appRoutingModule
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [ShoppingListService, ProductService, ProductDirectorService, ProductImageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

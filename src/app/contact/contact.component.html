@@ -1,0 +1,42 @@
+<div class="row">
+  <form class="col s12" (ngSubmit)="onSubmit()" [formGroup]="contactForm">
+    <div class="row">
+      <div class="input-field col s12">
+        <input type="email" id="email" formControlName="email" required [class.invalid]="contactForm.get('email').invalid && contactForm.get('email').touched">
+        <label for="email">Email</label>
+        <div *ngIf="(email.invalid && email.touched) || email.dirty">
+          <small *ngIf="email.errors?.required" class="helper-text text-danger">Email is required</small>
+          <small *ngIf="email.errors?.pattern" class="helper-text text-danger">Please provide a valid email address</small>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input type="text" id="firstName" formControlName="firstName" required [class.invalid]="contactForm.get('firstName').invalid && contactForm.get('firstName').touched">
+        <label for="firstName">First name</label>
+        <div *ngIf="(contactForm.get('firstName').invalid && contactForm.get('firstName').touched)">
+          <small class="helper-text text-danger">First name is required</small>
+        </div>
+      </div>
+      <div class="input-field col s6">
+        <input type="text" id="lastName" formControlName="lastName" required [class.invalid]="contactForm.get('lastName').invalid && contactForm.get('lastName').touched">
+        <label for="lastName">Last name</label>
+        <div *ngIf="(contactForm.get('lastName').invalid && contactForm.get('lastName').touched)">
+          <small class="helper-text text-danger">Last name is required</small>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <textarea id="textarea2" class="materialize-textarea" formControlName="message" data-length="120" rows="6" style="height: auto" required [class.invalid]="contactForm.get('message').invalid && contactForm.get('message').touched"></textarea>
+        <label for="textarea2">Message</label>
+        <div *ngIf="(contactForm.get('message').invalid && contactForm.get('message').touched)">
+          <small class="helper-text text-danger">Message is required</small>
+        </div>
+      </div>
+    </div>
+    <button class="btn waves-effect waves-light" type="submit" name="action" [disabled]="!contactForm.valid">Send
+      <i class="material-icons right">send</i>
+    </button>
+  </form>
+</div>

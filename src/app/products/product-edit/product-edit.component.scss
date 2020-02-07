@@ -1,0 +1,13 @@
+div.container {
+  div.row {
+    form {
+      div.row:first-child {
+        div.input-field.col.s12 {
+          button {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+}

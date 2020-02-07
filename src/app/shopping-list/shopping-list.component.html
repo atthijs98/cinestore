@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col s10">
+    <app-shopping-edit></app-shopping-edit>
+    <div class="divider"></div>
+    <ul class="collection">
+      <a
+        class="collection-item avatar"
+        style="cursor: pointer"
+        *ngFor="let item of items" (click)="onEditItem(item.id)">
+        <img [src]="item.product.poster" class="circle"/>
+        <span class="title">{{item.product.en_title}}</span>
+        <p>{{item.product.year}}</p>
+        <div class="secondary-content">
+           ({{item.amount}})
+        </div>
+      </a>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="card horizontal hide-on-med-and-down">
+  <div class="card-image">
+    <img [src]="product.poster" class="responsive-img" style="max-width: 100px"/>
+  </div>
+  <div class="card-stacked">
+    <div class="card-content">
+      <p class="truncate">{{product.en_title}} ({{product.year}})</p>
+    </div>
+    <div class="card-action">
+      <a style="cursor: pointer" routerLinkActive="active" [routerLink]="[id]">This is a link</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="card hide-on-large-only">
+  <div class="card-image">
+    <img [src]="product.poster" class="responsive-img">
+    <span class="card-title">{{product.en_title}}</span>
+    <a class="btn-floating halfway-fab waves-effect waves-light red"  [routerLink]="[id]"><i class="material-icons">more_vert</i></a>
+  </div>
+  <div class="card-content">
+    <p class="flow-text">{{product.plot}}</p>
+  </div>
+</div>
+
+
+
+
