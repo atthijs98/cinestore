@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="card">
+    <div class="card-content">
+      <div class="row">
+        <form class="col s12" (ngSubmit)="onSubmit()" [formGroup]="userForm" id="reg-form">
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">email</i>
+              <input id="email" formControlName="email" type="email" required
+                     [class.invalid]="userForm.get('email').invalid && userForm.get('email').touched"/>
+              <label for="email">E-mailadres</label>
+              <div class="error" *ngIf="(email.invalid && email.touched) || email.dirty">
+                <small *ngIf="email.errors?.required" class="helper-text text-danger">E-mailadres is verplicht</small>
+                <small *ngIf="email.errors?.pattern" class="helper-text text-danger">Vul aub. een bestaand e-mailadres
+                  in</small>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">account_circle</i>
+              <input id="name" formControlName="name" type="text" required
+                     [class.invalid]="userForm.get('name').invalid && userForm.get('name').touched"/>
+              <label for="name">Naam</label>
+              <div class="error" *ngIf="userForm.get('name').invalid && userForm.get('name').touched">
+                <small class="helper-text text-danger">Naam is verplicht</small>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="material-icons prefix">lock</i>
+              <input id="password" formControlName="password" type="password" required
+                     [class.invalid]="userForm.get('password').invalid && userForm.get('password').touched || userForm.hasError('notSame')"/>
+              <label for="password">Wachtwoord</label>
+              <div class="error" *ngIf="userForm.get('password').invalid && userForm.get('password').touched">
+                <small class="helper-text text-danger">Wachtwoord is verplicht</small>
+              </div>
+            </div>
+            <div class="input-field col s6">
+              <i class="material-icons prefix">lock</i>
+              <input id="passwordRepeat" formControlName="passwordRepeat" type="password" required
+                     [class.invalid]="userForm.get('passwordRepeat').invalid && userForm.get('passwordRepeat').touched || userForm.hasError('notSame')"/>
+              <label for="passwordRepeat">Herhaal wachtwoord</label>
+              <div class="error" *ngIf="userForm.get('passwordRepeat').invalid && userForm.get('passwordRepeat').touched">
+                <small class="helper-text text-danger">Wachtwoord herhalen is verplicht</small>
+              </div>
+            </div>
+            <div *ngIf="userForm.hasError('notSame')" class="error">
+              <small class="helper-text text-danger">Wachtwoorden komen niet overeen</small>
+            </div>
+          </div>
+          <div class="input-field col s12">
+            <button class="btn btn-large btn-register waves-effect waves-light" type="submit"
+                    [disabled]="!userForm.valid || userForm.hasError('notSame')">Registreer
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
+          <div class="input-field col s12">
+              Heeft u al een account? <a [routerLink]="['/login']">Login</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

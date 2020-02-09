@@ -1,4 +1,4 @@
-import {Product} from '../products/product.model';
+import {Product} from '../components/Products/product.model';
 
 export class ProductDirector {
   public id: number;

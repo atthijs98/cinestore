@@ -1,0 +1,15 @@
+div.container {
+  height: 100vh;
+  width: 550px;
+  div.card {
+    position: relative;
+    transform: translate(0px, -50%);
+    top: 50%;
+    button.btn {
+      width: 100%;
+    }
+    div.error {
+      margin-left: 44px;
+    }
+  }
+}

@@ -1,0 +1,3 @@
+<div *ngIf="backgroundImage != 'none'" class="background" [ngStyle]="{'background-image': 'url(../../assets/images/'+ backgroundImage + ')', 'background-repeat': 'no-repeat', 'background-size': 'cover'}" ></div>
+<app-header *ngIf="menuVisible"></app-header>
+<router-outlet></router-outlet>
