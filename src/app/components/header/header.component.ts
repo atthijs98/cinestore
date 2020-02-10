@@ -1,4 +1,4 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import * as M from 'materialize-css';
 import {JwtService} from '../../services/jwt.service';
 @Component({
@@ -6,7 +6,7 @@ import {JwtService} from '../../services/jwt.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements AfterViewInit {
+export class HeaderComponent implements AfterViewInit, OnInit {
   // user = this.jwtService.parseJWT();
 
   constructor(private jwtService: JwtService) {
@@ -14,6 +14,10 @@ export class HeaderComponent implements AfterViewInit {
 
   logout(): void {
     this.jwtService.logout();
+  }
+
+  ngOnInit(): void {
+    // console.log(this.user);
   }
 
   ngAfterViewInit(): void {
