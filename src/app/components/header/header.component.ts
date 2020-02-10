@@ -7,7 +7,7 @@ import {JwtService} from '../../services/jwt.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements AfterViewInit {
-  user = this.jwtService.parseJWT();
+  // user = this.jwtService.parseJWT();
 
   constructor(private jwtService: JwtService) {
   }

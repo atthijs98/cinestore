@@ -53,9 +53,9 @@ export class JwtService {
         catchError(this.handleHttpError)
       );
     response.subscribe((data) => {
-      this.localStorageService.set('jwt', data.result.token);
+      this.localStorageService.set('jwt', data.result);
       // redirect to user page
-      this.router.navigate(['/me/start']);
+      this.router.navigate(['/product']);
     });
   }
 
@@ -73,7 +73,7 @@ export class JwtService {
     response.subscribe((data) => {
       this.localStorageService.set('jwt', data.result.token);
       // redirect to user page
-      this.router.navigate(['/me/start']);
+      this.router.navigate(['/product']);
     });
   }
 }

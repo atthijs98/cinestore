@@ -17,7 +17,7 @@ export class LocalStorageService {
   }
 
   set(key,value) {
-    this.store[key];
+    this.store[key] = value;
   }
 
   loadStore(){

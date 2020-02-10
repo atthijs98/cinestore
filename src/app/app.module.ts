@@ -25,22 +25,8 @@ import { ContactComponent } from './components/contact/contact.component';
 import { HomeComponent } from './components/home/home.component';
 import {JwtService} from './services/jwt.service';
 import {LocalStorageService} from './services/local-storage.service';
-import {AuthenticatedModule} from './authenticated/authenticated.module';
 import {GeneralStateService} from './services/general-state.service';
-
-const appRoutes: Routes = [
-  {
-    path: 'login',
-    component: LoginComponent
-  },{
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },{
-    path: 'signup',
-    component: SignupComponent
-  }
-];
+import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -61,11 +47,7 @@ const appRoutes: Routes = [
     ContactComponent
   ],
   imports: [
-    AuthenticatedModule,
-    RouterModule.forRoot(
-      appRoutes,
-      {enableTracing: true}
-    ),
+    AppRoutingModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

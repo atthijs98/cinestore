@@ -26,7 +26,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
   isAuthenticated(url: string): boolean {
     if (!this.jwtService.isAuthenticated()) {
-      this.router.navigate(['login']);
+      this.router.navigate(['/login']);
       return false;
     }
     this.jwtService.redirectURL = url;
