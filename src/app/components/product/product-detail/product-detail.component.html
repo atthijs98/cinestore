@@ -13,11 +13,10 @@
       <p *ngIf="product.original_title">{{product.original_title}} <span
         *ngIf="product.romanized_original_title">| {{product.romanized_original_title}}</span></p>
       <p style="text-transform: uppercase"> Directed by</p>
-      <p style="font-weight: bold"><span *ngFor="let director of directors">{{director.firstName}}<span
-        *ngIf="director.middleName"> {{director.middleName}}</span> {{director.lastName}} </span></p>
-      <p>{{product.year}} | {{product.runtime}} mins<span class="right"
+      <p style="font-weight: bold"><span *ngFor="let director of directors">{{director.name}}</span></p>
+      <p>{{product.year | date: 'yyyy'}} | {{product.runtime}} mins<span class="right"
                                                           style="text-transform: uppercase"><a
-        href="https://www.youtube.com/watch?v={{product.trailer}}">trailer</a></span></p>
+        href="https://www.youtube.com/watch?v=">trailer</a></span></p>
       <div class="divider"></div>
       {{product.plot}}
     </div>
@@ -64,12 +63,10 @@
           <p *ngIf="product.original_title">{{product.original_title}} <span
             *ngIf="product.romanized_original_title">| {{product.romanized_original_title}}</span></p>
           <p style="text-transform: uppercase"> Directed by</p>
-          <p style="font-weight: bold"><span *ngFor="let director of directors">{{director.firstName}}<span
-            *ngIf="director.middleName"> {{director.middleName}}</span> {{director.lastName}}
-          </span></p>
-          <p>{{product.year}} | {{product.runtime}} mins<span class="right"
+          <p style="font-weight: bold"><span *ngFor="let director of directors">{{director.name}}</span></p>
+          <p>{{product.year | date: 'yyyy'}} | {{product.runtime}} mins<span class="right"
                                                               style="text-transform: uppercase"><a
-            href="https://www.youtube.com/watch?v={{product.trailer}}">trailer</a></span></p>
+            href="https://www.youtube.com/watch?v=">trailer</a></span></p>
           <div class="divider"></div>
           <p class="flow-text">{{product.plot}}</p>
         </div>

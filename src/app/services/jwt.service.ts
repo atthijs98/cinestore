@@ -18,6 +18,11 @@ export class JwtService {
               private router: Router) {
   }
 
+  /**
+   *
+   * @param error
+   * @returns {Resp} Observable
+   */
   handleHttpError(error: HttpErrorResponse): Observable<Resp> {
     if (error.error instanceof ErrorEvent) {
       console.log('An error occurred: ', error.error.message);
@@ -33,28 +38,43 @@ export class JwtService {
 
   }
 
+  /**
+   *
+   * @returns {boolean}
+   */
   isAuthenticated(): boolean {
     if (this.localStorageService.get('jwt')) {
       return true;
     }
   }
 
+  /**
+   *
+   * @returns
+   */
   parseJWT(): {email: string, iat: number, id: string, name: string} {
     const token = this.localStorageService.get('jwt');
+    console.log(token);
 
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/g/, '+').replace(/_/g, '/');
     return JSON.parse(window.atob(base64));
   }
 
+  /**
+   *
+   * @param loginDetails
+   */
   login(loginDetails: {email: string, password: string}): void {
     const response: Observable<Resp> = this.http.post<Resp>(`${environment.apiURL}/login`, loginDetails)
       .pipe(
         catchError(this.handleHttpError)
       );
     response.subscribe((data) => {
+      console.log(data.result);
       this.localStorageService.set('jwt', data.result);
       // redirect to user page
+      //this.parseJWT();
       this.router.navigate(['/product']);
     });
   }
@@ -64,7 +84,12 @@ export class JwtService {
     this.router.navigate(['/']);
   }
 
-  signup(singupDetails: {name: string, email: string, password: string}): void {
+  /**
+   *
+   * @param singupDetails
+   */
+  signup(singupDetails: {name: string, email: string, password: string, userRole: string}): void {
+    console.log(singupDetails);
     const response: Observable<Resp> = this.http.post<Resp>(`${environment.apiURL}/signup`, singupDetails)
       .pipe(
           catchError(this.handleHttpError)
@@ -72,8 +97,7 @@ export class JwtService {
 
     response.subscribe((data) => {
       this.localStorageService.set('jwt', data.result.token);
-      // redirect to user page
-      this.router.navigate(['/product']);
+      this.router.navigate(['/login']);
     });
   }
 }

@@ -12,10 +12,20 @@ export class LocalStorageService {
     this.loadStore();
   }
 
+  /**
+   * Haalt value op uit localstorage doormiddel van een key
+   * @param {string} key
+   * @returns {Object}
+   */
   get(key) {
     return this.store[key];
   }
 
+  /**
+   * Slaat key value pair op in de localstorage
+   * @param key
+   * @param value
+   */
   set(key,value) {
     this.store[key] = value;
   }

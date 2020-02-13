@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Product} from '../Products/product.model';
+import {Product} from '../product/product.model';
 import {ShoppingListService} from './shopping-list.service';
 import {Subscription} from 'rxjs';
 import { Item } from '../../shared/item.model';
-import {ProductService} from '../Products/product.service';
+import {ProductService} from '../product/product.service';
 import {GeneralStateService} from '../../services/general-state.service';
 
 @Component({

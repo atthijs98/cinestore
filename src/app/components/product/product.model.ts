@@ -1,21 +1,18 @@
 export class Product {
   public id: number;
   public en_title: string;
-  public original_title: string;
+  public original_title?: string;
   public romanized_original_title: string;
   public runtime: string;
   public poster: string;
   public plot: string;
   public year: string;
   public price: number;
-  public in_stock: boolean;
-  public amount: number;
-  public trailer: string;
   public created_at: string;
   public updated_at: string;
 
   constructor(id: number, en_title: string, original_title: string, romanized_original_title: string, runtime: string, poster: string,
-              plot: string, year: string, price:number, in_stock: boolean, amount: number, trailer:string, created_at: string, updated_at: string) {
+              plot: string, year: string, price:number, created_at: string, updated_at: string) {
     this.id = id;
     this.en_title = en_title;
     this.original_title = original_title;
@@ -25,9 +22,6 @@ export class Product {
     this.plot = plot;
     this.year = year;
     this.price = price;
-    this.in_stock = in_stock;
-    this.amount = amount;
-    this.trailer = trailer;
     this.created_at = created_at;
     this.updated_at = updated_at;
   }

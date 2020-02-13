@@ -16,14 +16,31 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   ) {
   }
 
+  /**
+   *
+   * @param {ActivatedRouteSnapshot} route
+   * @param {RouterStateSnapshot} state
+   * @returns {boolean}
+   */
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     return this.isAuthenticated(state.url);
   }
 
+  /**
+   *
+   * @param {ActivatedRouteSnapshot} childRoute
+   * @param {RouterStateSnapshot} state
+   * @returns {boolean}
+   */
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     return this.canActivate(childRoute, state);
   }
 
+  /**
+   *
+   * @param {string} url
+   * @returns {boolean}
+   */
   isAuthenticated(url: string): boolean {
     if (!this.jwtService.isAuthenticated()) {
       this.router.navigate(['/login']);

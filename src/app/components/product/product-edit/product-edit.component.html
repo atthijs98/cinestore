@@ -1,0 +1,296 @@
+<div class="row hide-on-med-and-down" style="margin-top: 20px">
+  <div class="col s12">
+    <a class="waves-effect waves-light btn" style="visibility: hidden">New Product</a>
+  </div>
+</div>
+<div class="container">
+  <!-- <div class="row">
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <button class="btn waves-effect waves-light" type="submit" name="action" [disabled]="!productForm.valid">Save
+            <i class="material-icons right">send</i>
+          </button>
+          <button class="btn waves-effect waves-light" type="button" name="action" [disabled]="!productForm.valid" (click)="onCancel()">Cancel
+            <i class="material-icons right">cancel</i>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col m4 l4 s12">
+          <input id="international_title" type="text" class="validate" formControlName="en_title">
+          <label for="international_title">International Title</label>
+        </div>
+        <div class="input-field col m4 l4 s12">
+          <input id="original_title" type="text" class="validate" formControlName="original_title">
+          <label for="original_title">Original Title</label>
+        </div>
+        <div class="input-field col m4 l4 s12">
+          <input id="romanized_original_title" type="text" class="validate" formControlName="romanized_original_title">
+          <label for="romanized_original_title">Romanized Original Title Title</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s4">
+          <input type="number" class="validate" id="runtime" formControlName="runtime">
+          <label for="runtime">Runtime</label>
+        </div>
+        <div class="input-field col s8">
+          <input id="poster" placeholder="link to image url" type="text" class="validate" formControlName="poster" #imagePath>
+          <label for="poster">Poster</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <img [src]="imagePath.value" class="responsive-img" style="max-height: 300px">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="plot" class="materialize-textarea" rows="6" formControlName="plot" style="height: auto"></textarea>
+          <label for="plot">Plot</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="text" class="validate" id="year" formControlName="year">
+          <label for="year">Year</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="number" class="validate" id="price" formControlName="price">
+          <label for="price">Price</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="number" class="validate" id="amount" formControlName="amount">
+          <label for="amount">Amount</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="text" placeholder="https://www.youtube.com/watch?v=[paste code]" class="validate" id="trailer" formControlName="trailer">
+          <label for="trailer">Trailer</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12" formArrayName="images">
+          <div
+            class="row"
+            *ngFor="let image of images; let i = index"
+            [formGroupName]="i"
+          >
+            <div class="col s2">
+              <img [src]="image.value.path" class="responsive-img" />
+            </div>
+            <div class="input-field col s8">
+              <input type="text" class="validate" id="path" formControlName="path">
+              <label for="path">Path</label>
+            </div>
+            <div class="input-field col s2">
+              <button class="btn waves-effect waves-light" type="button" (click)="onDeleteImage(i,image.value.id)">
+                <i class="material-icons">delete</i>
+              </button>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="row">
+            <div class="input-field col s12">
+              <button class="btn waves-effect waves-light" type="button" (click)="onAddImage()">Add Image
+                <i class="material-icons right">add</i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12" formArrayName="directors">
+          <div
+            class="row"
+            *ngFor="let director of directors; let i = index"
+            [formGroupName]="i"
+          >
+            <div class="input-field col s3">
+              <input type="text" class="validate" id="firstName" formControlName="firstName">
+              <label for="firstName">First name</label>
+            </div>
+            <div class="input-field col s3">
+              <input type="text" class="validate" id="middleName" formControlName="middleName">
+              <label for="middleName">Middle Name</label>
+            </div>
+            <div class="input-field col s3">
+              <input type="text" class="validate" id="lastName" formControlName="lastName">
+              <label for="lastName">Last Name</label>
+            </div>
+            <div class="input-field col s3">
+              <button class="btn waves-effect waves-light" type="button" (click)="onDeleteDirector(i,director.value.id)">
+                <i class="material-icons">delete</i>
+              </button>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="row">
+            <div class="input-field col s12">
+              <button class="btn waves-effect waves-light" type="button" (click)="onAddDirector()">Add Director
+                <i class="material-icons right">add</i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>-->
+  <div class="row">
+    <form class="col s12" (ngSubmit)="onSubmit()" [formGroup]="productForm">
+      <div class="row">
+        <div class="input-field col s12">
+          <button class="btn waves-effect waves-light" type="submit" name="action" [disabled]="!productForm.valid">
+            Opslaan
+            <i class="material-icons right">check</i>
+          </button>
+          <button class="btn waves-effect waves-light" type="button" name="action" [disabled]="!productForm.valid"
+                  (click)="onCancel()">Annuleren
+            <i class="material-icons right">cancel</i>
+          </button>
+        </div>
+        <div class="row">
+          <div class="input-field col m4 l4 s12">
+            <input id="en_title" type="text" formControlName="en_title" required
+                   [class.invalid]="productForm.get('en_title').invalid && productForm.get('en_title').touched">
+            <label for="en_title">Internationale titel</label>
+            <div class="error" *ngIf="(productForm.get('en_title').invalid && productForm.get('en_title').touched)">
+              <small class="helper-text text-danger">Internationale titel is verplicht</small>
+            </div>
+          </div>
+          <div class="input-field col m4 l4 s12">
+            <input id="original_title" type="text" formControlName="original_title">
+            <label for="original_title">Originele titel</label>
+          </div>
+          <div class="input-field col m4 l4 s12">
+            <input id="romanized_original_title" type="text" formControlName="romanized_original_title">
+            <label for="romanized_original_title">Titel geromaniseerd</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s4">
+            <input type="text" id="runtime" formControlName="runtime" required
+                   [class.invalid]="productForm.get('runtime').invalid && productForm.get('runtime').touched">
+            <label for="runtime">Speelduur</label>
+            <div class="error" *ngIf="(productForm.get('runtime').invalid && productForm.get('runtime').touched)">
+              <small class="helper-text text-danger">Speelduur is verplicht</small>
+            </div>
+          </div>
+          <div class="input-field col s8">
+            <input id="poster" type="text" formControlName="poster" #imagePath required
+                   [class.invalid]="productForm.get('poster').invalid && productForm.get('poster').touched">
+            <label for="poster">Poster</label>
+            <div class="error" *ngIf="(productForm.get('poster').invalid && productForm.get('poster').touched)">
+              <small class="helper-text text-danger">Poster is verplicht</small>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <img [src]="imagePath.value" class="responsive-img" style="max-height: 300px">
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <textarea id="plot" class="materialize-textarea" rows="4" formControlName="plot" style="height: auto"
+                      required
+                      [class.invalid]="productForm.get('plot').invalid && productForm.get('plot').touched"></textarea>
+            <label for="plot">Plot</label>
+            <div class="error" *ngIf="(productForm.get('plot').invalid && productForm.get('plot').touched)">
+              <small class="helper-text text-danger">Plot is verplicht</small>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="text" class="date-picker" id="year" formControlName="year" required
+                   [class.invalid]="productForm.get('year').invalid && productForm.get('year').touched">
+            <label for="year">Jaar</label>
+            <div class="error" *ngIf="(productForm.get('year').invalid && productForm.get('year').touched)">
+              <small class="helper-text text-danger">Jaar is verplicht</small>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="number" id="price" formControlName="price" required
+                   [class.invalid]="productForm.get('price').invalid && productForm.get('price').touched" min="0.01"
+                   max="999999.99">
+            <label for="price">Prijs</label>
+            <div class="error" *ngIf="(productForm.get('price').invalid && productForm.get('price').touched)">
+              <small class="helper-text text-danger">Prijs is verplicht</small>
+            </div>
+          </div>
+        </div>
+        <div id="product-director" formGroupName="productDirector">
+          <div class="row">
+            <div class="col s12" formArrayName="directors">
+              <div
+                class="row"
+                *ngFor="let director of directors; let i = index"
+                [formGroupName]="i"
+              >
+                <div class="input-field col s9">
+                  <input type="text" id="name" formControlName="name">
+                  <label for="name">Naam</label>
+                </div>
+                <div class="input-field col s3">
+                  <button class="btn waves-effect waves-light" type="button" (click)="onDeleteDirector(i,director.value.id)">
+                    <i class="material-icons">delete</i>
+                  </button>
+                </div>
+              </div>
+              <div class="divider"></div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <button class="btn waves-effect waves-light" type="button" (click)="onAddDirector()">Regisseur toevoegen
+                    <i class="material-icons right">add</i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="product-image" formGroupName="productImage">
+          <div class="row">
+            <div class="col s12" formArrayName="images">
+              <div
+                class="row"
+                *ngFor="let image of images; let i = index"
+                [formGroupName]="i"
+              >
+                <div class="col s2">
+                  <img [src]="image.value.path" class="responsive-img" />
+                </div>
+                <div class="input-field col s8">
+                  <input type="text" class="validate" id="path" formControlName="path">
+                  <label for="path">Path</label>
+                </div>
+                <div class="input-field col s2">
+                  <button class="btn waves-effect waves-light" type="button" (click)="onDeleteImage(i,image.value.id)">
+                    <i class="material-icons">delete</i>
+                  </button>
+                </div>
+              </div>
+              <div class="divider"></div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <button class="btn waves-effect waves-light" type="button" (click)="onAddImage()">Afbeelding toevoegen
+                    <i class="material-icons right">add</i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

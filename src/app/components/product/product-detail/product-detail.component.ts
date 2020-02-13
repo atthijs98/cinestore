@@ -9,6 +9,7 @@ import {ProductImageService} from '../../../services/product-image.service';
 import * as M from 'materialize-css';
 import {Subscription} from 'rxjs';
 import {GeneralStateService} from '../../../services/general-state.service';
+import {HttpService} from '../../../services/http.service';
 
 
 @Component({
@@ -34,7 +35,9 @@ export class ProductDetailComponent implements OnInit, AfterContentInit, OnDestr
               private route: ActivatedRoute,
               private router: Router,
               private directorService: ProductDirectorService,
-              private imageService: ProductImageService, private generalStateService: GeneralStateService) {
+              private imageService: ProductImageService,
+              private generalStateService: GeneralStateService,
+              private httpService: HttpService) {
     this.setMenuVisibility();
     this.setBackgroundImage();
   }
@@ -104,9 +107,8 @@ export class ProductDetailComponent implements OnInit, AfterContentInit, OnDestr
 
 
   onDeleteProduct(id: number) {
+    this.httpService.deleteProduct(id);
     this.productService.deleteProduct(id);
-    this.imageService.deleteImage(this.id);
-    this.directorService.deleteDirector(this.id);
     this.router.navigate(['/product']);
   }
 }

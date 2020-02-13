@@ -4,7 +4,7 @@
   </div>
   <div class="card-stacked">
     <div class="card-content">
-      <p class="truncate">{{product.en_title}} ({{product.year}})</p>
+      <p class="truncate">{{product.en_title}} ({{product.year | date:  'yyyy'}})</p>
     </div>
     <div class="card-action">
       <a style="cursor: pointer" routerLinkActive="active" [routerLink]="[id]">This is a link</a>

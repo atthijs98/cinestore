@@ -4,6 +4,7 @@ import {Product} from '../product.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {GeneralStateService} from '../../../services/general-state.service';
+import {HttpService} from '../../../services/http.service';
 
 @Component({
   selector: 'app-product-list',
@@ -18,9 +19,12 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   constructor(private productService: ProductService,
               private router: Router,
-              private route: ActivatedRoute, private generalStateService: GeneralStateService) {
+              private route: ActivatedRoute,
+              private generalStateService: GeneralStateService,
+              private httpService: HttpService) {
     this.setMenuVisibility();
     this.setBackgroundImage();
+    this.httpService.fetchProducts();
   }
 
   setMenuVisibility(): void {

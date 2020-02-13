@@ -1,5 +1,5 @@
 import {EventEmitter, Injectable} from '@angular/core';
-import {Product} from '../Products/product.model';
+import {Product} from '../product/product.model';
 import {Subject} from 'rxjs';
 import {Item} from '../../shared/item.model';
 
@@ -23,9 +23,6 @@ export class ShoppingListService {
         'A young nurse, Alma, is put in charge of Elisabeth Vogler: an actress who is seemingly healthy in all respects, but will not talk. As they spend time together, Alma speaks to Elisabeth constantly, never receiving any answer. Alma eventually confesses her secrets to a seemingly sympathetic Elisabeth and finds that her own personality is being submerged into Elisabeth’s persona.',
         '1966',
         8.99,
-        true,
-        2,
-        '37g9h8cROsM',
         '31-12-2019',
         '31-12-2019'
       )

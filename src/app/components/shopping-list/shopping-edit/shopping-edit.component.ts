@@ -1,10 +1,10 @@
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ShoppingListService} from '../shopping-list.service';
-import {Product} from '../../Products/product.model';
+import {Product} from '../../product/product.model';
 import {NgForm} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {Item} from '../../../shared/item.model';
-import {ProductService} from '../../Products/product.service';
+import {ProductService} from '../../product/product.service';
 import {GeneralStateService} from '../../../services/general-state.service';
 
 @Component({

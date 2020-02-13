@@ -14,6 +14,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   }
 }
 
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -22,6 +23,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class SignupComponent implements OnInit, RouteInterface {
   public readonly MENU_VISIBLE: boolean = false;
   public readonly BACKGROUND_IMAGE: BackgroundImages = 'under-the-skin.jpg';
+  userRoles: string[];
 
   matcher = new MyErrorStateMatcher();
 
@@ -44,16 +46,17 @@ export class SignupComponent implements OnInit, RouteInterface {
       Validators.required,
       Validators.minLength(6),
       Validators.maxLength(255)
-    ])
+    ]),
+    user_role: new FormControl('user', [Validators.minLength(4),Validators.maxLength(7)])
   }, {validators: this.checkPasswords });
 
   constructor(
     private jwtService: JwtService,
     private router: Router,
-    private generalStateService: GeneralStateService
+    private generalStateService: GeneralStateService,
   ) {
     if (this.jwtService.isAuthenticated()) {
-      this.router.navigate(['/me/start']);
+      this.router.navigate(['/login']);
     }
     this.setMenuVisibility();
     this.setBackgroundImage();

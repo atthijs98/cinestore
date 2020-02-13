@@ -3,13 +3,13 @@ import {RouterModule, Routes} from '@angular/router';
 
 
 import {LoginComponent} from './components/login/login.component';
-import {ProductsComponent} from './components/Products/products.component';
+import {ProductsComponent} from './components/product/products.component';
 import {SignupComponent} from './components/signup/signup.component';
 import {ContactComponent} from './components/contact/contact.component';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
-import {ProductStartComponent} from './components/Products/product-start/product-start.component';
-import {ProductEditComponent} from './components/Products/product-edit/product-edit.component';
-import {ProductDetailComponent} from './components/Products/product-detail/product-detail.component';
+import {ProductStartComponent} from './components/product/product-start/product-start.component';
+import {ProductEditComponent} from './components/product/product-edit/product-edit.component';
+import {ProductDetailComponent} from './components/product/product-detail/product-detail.component';
 import {ShoppingListComponent} from './components/shopping-list/shopping-list.component';
 import {AuthGuard} from './auth/auth.guard';
 
