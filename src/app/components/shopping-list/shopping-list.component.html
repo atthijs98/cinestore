@@ -9,7 +9,7 @@
         *ngFor="let item of items" (click)="onEditItem(item.id)">
         <img [src]="item.product.poster" class="circle"/>
         <span class="title">{{item.product.en_title}}</span>
-        <p>{{item.product.year}}</p>
+        <p>{{item.product.year | date: 'yyyy'}}</p>
         <div class="secondary-content">
            ({{item.amount}})
         </div>

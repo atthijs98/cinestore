@@ -13,6 +13,16 @@ export class ProductDirectorService {
   constructor(private productService: ProductService) {
   }
 
+  getDirectorsByProduct(id: number) {
+    let dir = [];
+    for(let i = 0; i < this.directors.length; i++) {
+      if (id == this.directors[i]['product']['id']) {
+        dir.push(this.directors[i]);
+      }
+    }
+    return dir;
+  }
+
   getDirector(id: number) {
     let ds = [];
     for(let i = 0; i < this.directors.length; i++) {

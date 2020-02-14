@@ -6,7 +6,7 @@
           <div class="row">
             <div class="input-field col s12">
               <i class="material-icons prefix">email</i>
-              <input id="email" formControlName="email" type="email" required
+              <input id="email" formControlName="email" type="email" maxlength="255" required
                      [class.invalid]="userForm.get('email').invalid && userForm.get('email').touched"/>
               <label for="email">E-mailadres</label>
               <div class="error" *ngIf="(email.invalid && email.touched) || email.dirty">
@@ -19,7 +19,7 @@
           <div class="row">
             <div class="input-field col s12">
               <i class="material-icons prefix">account_circle</i>
-              <input id="name" formControlName="name" type="text" required
+              <input id="name" formControlName="name" type="text" maxlength="255" required
                      [class.invalid]="userForm.get('name').invalid && userForm.get('name').touched"/>
               <label for="name">Naam</label>
               <div class="error" *ngIf="userForm.get('name').invalid && userForm.get('name').touched">
@@ -30,7 +30,7 @@
           <div class="row">
             <div class="input-field col s6">
               <i class="material-icons prefix">lock</i>
-              <input id="password" formControlName="password" type="password" required
+              <input id="password" formControlName="password" maxlength="255" type="password" required
                      [class.invalid]="userForm.get('password').invalid && userForm.get('password').touched || userForm.hasError('notSame')"/>
               <label for="password">Wachtwoord</label>
               <div class="error" *ngIf="userForm.get('password').invalid && userForm.get('password').touched">
@@ -39,7 +39,7 @@
             </div>
             <div class="input-field col s6">
               <i class="material-icons prefix">lock</i>
-              <input id="passwordRepeat" formControlName="passwordRepeat" type="password" required
+              <input id="passwordRepeat" formControlName="passwordRepeat" maxlength="255" type="password" required
                      [class.invalid]="userForm.get('passwordRepeat').invalid && userForm.get('passwordRepeat').touched || userForm.hasError('notSame')"/>
               <label for="passwordRepeat">Herhaal wachtwoord</label>
               <div class="error" *ngIf="userForm.get('passwordRepeat').invalid && userForm.get('passwordRepeat').touched">

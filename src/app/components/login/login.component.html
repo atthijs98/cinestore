@@ -6,7 +6,7 @@
           <div class="row">
             <div class="input-field col s12">
               <i class="material-icons prefix">email</i>
-              <input id="email" formControlName="email" type="email" required
+              <input id="email" formControlName="email" type="email" maxlength="255" required
                      [class.invalid]="userForm.get('email').invalid && userForm.get('email').touched"/>
               <label for="email">E-mailadres</label>
               <div class="error" *ngIf="(email.invalid && email.touched) || email.dirty">
@@ -19,7 +19,7 @@
           <div class="row">
             <div class="input-field col s12">
               <i class="material-icons prefix">lock</i>
-              <input id="password" formControlName="password" type="password" required
+              <input id="password" formControlName="password" type="password" maxlength="255" required
                      [class.invalid]="userForm.get('password').invalid && userForm.get('password').touched"/>
               <label for="password">Wachtwoord</label>
               <div class="error" *ngIf="(userForm.get('password').invalid && userForm.get('password').touched)">

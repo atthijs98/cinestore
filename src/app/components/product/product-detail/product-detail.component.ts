@@ -19,23 +19,17 @@ import {HttpService} from '../../../services/http.service';
 })
 export class ProductDetailComponent implements OnInit, AfterContentInit, OnDestroy {
   product: Product;
-  directors: ProductDirector[];
-  images: ProductImage[];
   id: number;
   options: { fullWidth: true };
   // @ts-ignore
   initialized = true;
   mobile = false;
-  imagesObserver: Subscription;
-  directorsObserver: Subscription;
   private readonly MENU_VISIBLE: boolean = true;
   public readonly BACKGROUND_IMAGE: BackgroundImages = 'none';
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
               private router: Router,
-              private directorService: ProductDirectorService,
-              private imageService: ProductImageService,
               private generalStateService: GeneralStateService,
               private httpService: HttpService) {
     this.setMenuVisibility();
@@ -59,19 +53,7 @@ export class ProductDetailComponent implements OnInit, AfterContentInit, OnDestr
       (params: Params) => {
         this.id = +params['id'];
         this.product = this.productService.getProduct(this.id);
-        this.directors = this.directorService.getDirector(this.id);
-        this.images = this.imageService.getImagesByProduct(this.id);
         this.initialized = false;
-      }
-    );
-   this.imagesObserver = this.imageService.imagesChanged.subscribe(
-      (image: ProductImage[]) => {
-        this.images = this.imageService.getImagesByProduct(this.id);
-      }
-    );
-    this.directorsObserver = this.directorService.directorsChanged.subscribe(
-      (director: ProductDirector[]) => {
-        this.directors = this.directorService.getDirector(this.id);
       }
     );
     if (window.screen.width <= 480) {
@@ -80,8 +62,6 @@ export class ProductDetailComponent implements OnInit, AfterContentInit, OnDestr
   }
 
   ngOnDestroy(): void {
-    this.imagesObserver.unsubscribe();
-    this.directorsObserver.unsubscribe();
   }
 
   ngAfterContentInit(): void {

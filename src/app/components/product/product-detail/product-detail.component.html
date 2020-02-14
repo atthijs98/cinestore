@@ -13,7 +13,7 @@
       <p *ngIf="product.original_title">{{product.original_title}} <span
         *ngIf="product.romanized_original_title">| {{product.romanized_original_title}}</span></p>
       <p style="text-transform: uppercase"> Directed by</p>
-      <p style="font-weight: bold"><span *ngFor="let director of directors">{{director.name}}</span></p>
+      <p style="font-weight: bold"><span *ngFor="let director of product.directors">{{director.name}}</span></p>
       <p>{{product.year | date: 'yyyy'}} | {{product.runtime}} mins<span class="right"
                                                           style="text-transform: uppercase"><a
         href="https://www.youtube.com/watch?v=">trailer</a></span></p>
@@ -34,8 +34,8 @@
   </div>
   <div class="row">
     <div class="col s12">
-      <div *ngIf="images.length" class="carousel carousel-slider">
-        <a *ngFor="let image of images; let last = last" class="carousel-item">
+      <div *ngIf="product.images.length" class="carousel carousel-slider">
+        <a *ngFor="let image of product.images; let last = last" class="carousel-item">
           <img [src]="image.path"/>
           <ng-container *ngIf="last && !initialized">{{ initCarousel() }}</ng-container>
         </a>
@@ -49,8 +49,8 @@
     <div class="container">
       <div class="row">
         <div class="col s12">
-          <div *ngIf="images.length" class="carousel carousel-slider">
-            <a *ngFor="let image of images; let last = last" class="carousel-item">
+          <div *ngIf="product.images.length" class="carousel carousel-slider">
+            <a *ngFor="let image of product.images; let last = last" class="carousel-item">
               <img [src]="image.path"/>
               <ng-container *ngIf="last && !initialized">{{ initCarousel()}}</ng-container>
             </a>
@@ -63,7 +63,7 @@
           <p *ngIf="product.original_title">{{product.original_title}} <span
             *ngIf="product.romanized_original_title">| {{product.romanized_original_title}}</span></p>
           <p style="text-transform: uppercase"> Directed by</p>
-          <p style="font-weight: bold"><span *ngFor="let director of directors">{{director.name}}</span></p>
+          <p style="font-weight: bold"><span *ngFor="let director of product.directors">{{director.name}}</span></p>
           <p>{{product.year | date: 'yyyy'}} | {{product.runtime}} mins<span class="right"
                                                               style="text-transform: uppercase"><a
             href="https://www.youtube.com/watch?v=">trailer</a></span></p>

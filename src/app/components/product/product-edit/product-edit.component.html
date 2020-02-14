@@ -157,7 +157,7 @@
         </div>
         <div class="row">
           <div class="input-field col m4 l4 s12">
-            <input id="en_title" type="text" formControlName="en_title" required
+            <input id="en_title" type="text" formControlName="en_title" maxlength="255" required
                    [class.invalid]="productForm.get('en_title').invalid && productForm.get('en_title').touched">
             <label for="en_title">Internationale titel</label>
             <div class="error" *ngIf="(productForm.get('en_title').invalid && productForm.get('en_title').touched)">
@@ -165,17 +165,17 @@
             </div>
           </div>
           <div class="input-field col m4 l4 s12">
-            <input id="original_title" type="text" formControlName="original_title">
+            <input id="original_title" type="text" maxlength="255" formControlName="original_title">
             <label for="original_title">Originele titel</label>
           </div>
           <div class="input-field col m4 l4 s12">
-            <input id="romanized_original_title" type="text" formControlName="romanized_original_title">
+            <input id="romanized_original_title" maxlength="255" type="text" formControlName="romanized_original_title">
             <label for="romanized_original_title">Titel geromaniseerd</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s4">
-            <input type="text" id="runtime" formControlName="runtime" required
+            <input type="text" id="runtime" formControlName="runtime" maxlength="15" required
                    [class.invalid]="productForm.get('runtime').invalid && productForm.get('runtime').touched">
             <label for="runtime">Speelduur</label>
             <div class="error" *ngIf="(productForm.get('runtime').invalid && productForm.get('runtime').touched)">
@@ -183,7 +183,7 @@
             </div>
           </div>
           <div class="input-field col s8">
-            <input id="poster" type="text" formControlName="poster" #imagePath required
+            <input id="poster" type="text" formControlName="poster" #imagePath maxlength="255" required
                    [class.invalid]="productForm.get('poster').invalid && productForm.get('poster').touched">
             <label for="poster">Poster</label>
             <div class="error" *ngIf="(productForm.get('poster').invalid && productForm.get('poster').touched)">
@@ -198,7 +198,8 @@
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <textarea id="plot" class="materialize-textarea" rows="4" formControlName="plot" style="height: auto"
+            <textarea id="plot" class="materialize-textarea" rows="4" formControlName="plot" maxlength="500"
+                      style="height: auto"
                       required
                       [class.invalid]="productForm.get('plot').invalid && productForm.get('plot').touched"></textarea>
             <label for="plot">Plot</label>
@@ -228,9 +229,9 @@
             </div>
           </div>
         </div>
-        <div id="product-director" formGroupName="productDirector">
-          <div class="row">
-            <div class="col s12" formArrayName="directors">
+        <div class="row">
+          <div class="col s12" formArrayName="directors">
+            <div *ngIf="directors.length > 0">
               <div
                 class="row"
                 *ngFor="let director of directors; let i = index"
@@ -241,32 +242,33 @@
                   <label for="name">Naam</label>
                 </div>
                 <div class="input-field col s3">
-                  <button class="btn waves-effect waves-light" type="button" (click)="onDeleteDirector(i,director.value.id)">
+                  <button class="btn waves-effect waves-light" type="button"
+                          (click)="onDeleteDirector(i,director.value.id)">
                     <i class="material-icons">delete</i>
                   </button>
                 </div>
               </div>
-              <div class="divider"></div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <button class="btn waves-effect waves-light" type="button" (click)="onAddDirector()">Regisseur toevoegen
-                    <i class="material-icons right">add</i>
-                  </button>
-                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="row">
+              <div class="input-field col s12">
+                <button class="btn waves-effect waves-light" type="button" (click)="onAddDirector()">Regisseur toevoegen
+                  <i class="material-icons right">add</i>
+                </button>
               </div>
             </div>
           </div>
         </div>
-        <div id="product-image" formGroupName="productImage">
-          <div class="row">
-            <div class="col s12" formArrayName="images">
+        <div class="row">
+          <div class="col s12" formArrayName="images">
+            <div *ngIf="images">
               <div
                 class="row"
                 *ngFor="let image of images; let i = index"
                 [formGroupName]="i"
               >
                 <div class="col s2">
-                  <img [src]="image.value.path" class="responsive-img" />
+                  <img [src]="image.value.path" class="responsive-img"/>
                 </div>
                 <div class="input-field col s8">
                   <input type="text" class="validate" id="path" formControlName="path">
@@ -278,13 +280,13 @@
                   </button>
                 </div>
               </div>
-              <div class="divider"></div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <button class="btn waves-effect waves-light" type="button" (click)="onAddImage()">Afbeelding toevoegen
-                    <i class="material-icons right">add</i>
-                  </button>
-                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="row">
+              <div class="input-field col s12">
+                <button class="btn waves-effect waves-light" type="button" (click)="onAddImage()">Afbeelding toevoegen
+                  <i class="material-icons right">add</i>
+                </button>
               </div>
             </div>
           </div>

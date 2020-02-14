@@ -20,6 +20,7 @@ export class HttpService {
         catchError(this.handleHttpError)
       );
     response.subscribe((data) => {
+      console.log(data.result.products);
       this.productService.setProducts(data.result.products);
     });
   }
