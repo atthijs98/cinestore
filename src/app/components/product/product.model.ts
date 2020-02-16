@@ -1,4 +1,4 @@
-import {ProductDirector} from '../../shared/product-director.model';
+import { ProductDirector } from 'src/app/shared/product-director.model';
 import { ProductImage } from 'src/app/shared/product-image.model';
 
 export class Product {
@@ -13,11 +13,12 @@ export class Product {
   public price: number;
   public directors: ProductDirector[];
   public images: ProductImage[];
-  public created_at: string;
-  public updated_at: string;
+  public trailer: string;
+  public created_at?: string;
+  public updated_at?: string;
 
   constructor(id: number, en_title: string, original_title: string, romanized_original_title: string, runtime: string, poster: string,
-              plot: string, year: string, price:number, directors: ProductDirector[], images: ProductImage[], created_at: string, updated_at: string) {
+              plot: string, year: string, price:number, trailer: string, directors: ProductDirector[], images: ProductImage[], created_at: string, updated_at: string) {
     this.id = id;
     this.en_title = en_title;
     this.original_title = original_title;
@@ -27,6 +28,7 @@ export class Product {
     this.plot = plot;
     this.year = year;
     this.price = price;
+    this.trailer = trailer;
     this.directors = directors;
     this.images = images;
     this.created_at = created_at;

@@ -2,15 +2,11 @@ import {AfterContentInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {Product} from '../product.model';
 import {ProductService} from '../product.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {ProductDirector} from '../../../shared/product-director.model';
-import {ProductDirectorService} from '../../../services/product-director.service';
-import {ProductImage} from '../../../shared/product-image.model';
-import {ProductImageService} from '../../../services/product-image.service';
 import * as M from 'materialize-css';
 import {Subscription} from 'rxjs';
 import {GeneralStateService} from '../../../services/general-state.service';
 import {HttpService} from '../../../services/http.service';
-
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-product-detail',
@@ -31,9 +27,10 @@ export class ProductDetailComponent implements OnInit, AfterContentInit, OnDestr
               private route: ActivatedRoute,
               private router: Router,
               private generalStateService: GeneralStateService,
-              private httpService: HttpService) {
+              private httpService: HttpService, private sanitizer: DomSanitizer) {
     this.setMenuVisibility();
     this.setBackgroundImage();
+
   }
 
   toShoppingList() {
@@ -68,6 +65,9 @@ export class ProductDetailComponent implements OnInit, AfterContentInit, OnDestr
     setTimeout(function() {
       let elems = document.querySelectorAll('.dropdown-trigger'),
         instance = M.Dropdown.init(elems);
+
+      let elems2 = document.querySelectorAll('.modal'),
+          instances = M.Modal.init(elems2);
     }, 0);
   }
 

@@ -2,8 +2,6 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ProductService} from '../product.service';
-import {ProductImageService} from '../../../services/product-image.service';
-import {ProductDirectorService} from '../../../services/product-director.service';
 import {GeneralStateService} from '../../../services/general-state.service';
 import * as M from 'materialize-css';
 import {HttpService} from '../../../services/http.service';
@@ -26,8 +24,6 @@ export class ProductEditComponent implements OnInit, AfterViewInit {
   constructor(private route: ActivatedRoute,
               private productService: ProductService,
               private router: Router,
-              private productImageService: ProductImageService,
-              private productDirectorService: ProductDirectorService,
               private generalStateService: GeneralStateService,
               private httpService: HttpService) {
     this.setMenuVisibility();
@@ -61,53 +57,113 @@ export class ProductEditComponent implements OnInit, AfterViewInit {
   }
 
   private initForm() {
+    let en_title = '',
+        original_title = '',
+        romanized_original_title = '',
+        runtime = '',
+        poster = '',
+        plot = '',
+        year = '',
+        price = 0.00,
+        trailer = '',
+        directors = new FormArray([]),
+        images = new FormArray([]);
+
+    if (this.editMode) {
+      const product = this.productService.getProduct(this.id);
+      en_title = product.en_title;
+      original_title = product.original_title;
+      romanized_original_title = product.romanized_original_title;
+      runtime = product.runtime;
+      poster = product.poster;
+      plot = product.plot;
+      year = product.year;
+      price = product.price;
+      trailer = product.trailer;
+      for (let director of product.directors) {
+        directors.push(
+          new FormGroup({
+            id: new FormControl(director.id),
+            name: new FormControl(director.name)
+          })
+        )
+      }
+      for (let image of product.images) {
+        images.push(
+          new FormGroup({
+            id: new FormControl(image.id),
+            path: new FormControl(image.path)
+          })
+        )
+      }
+    }
     this.productForm = new FormGroup({
-      en_title: new FormControl('', [
+      en_title: new FormControl(en_title, [
         Validators.required,
         Validators.maxLength(255),
         Validators.minLength(1)
       ]),
-      original_title: new FormControl('', [
+      original_title: new FormControl(original_title, [
         Validators.minLength(1),
         Validators.maxLength(255)
       ]),
-      romanized_original_title: new FormControl('', [
+      romanized_original_title: new FormControl(romanized_original_title, [
         Validators.minLength(1),
         Validators.maxLength(255),
       ]),
-      runtime: new FormControl('', [
+      runtime: new FormControl(runtime, [
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(15)
       ]),
-      poster: new FormControl('', [
+      poster: new FormControl(poster, [
         Validators.required,
         Validators.minLength(10),
         Validators.maxLength(255)
       ]),
-      plot: new FormControl('', [
+      plot: new FormControl(plot, [
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(500)
       ]),
-      year: new FormControl('', [
+      year: new FormControl(year, [
         Validators.required
       ]),
-      price: new FormControl('', [
+      price: new FormControl(price, [
         Validators.required,
         Validators.min(0.01),
         Validators.max(999999.99)
       ]),
-      productDirector: new FormArray([]),
-      productImage: new FormArray([])
+      trailer: new FormControl(trailer, [
+        Validators.required,
+        Validators.min(1),
+        Validators.max(85)
+      ]),
+      directors: directors,
+      images: images
     });
+
   }
 
   onSubmit() {
-    this.httpService.storeProduct(this.productForm.value);
+    if (this.editMode) {
+      this.httpService.updateProduct(this.id, this.productForm.value);
+      for (let director of this.directorsToBeDeleted) {
+          this.httpService.deleteDirector(director);
+      }
+      for (let image of this.imagesToBeDeleted) {
+          this.httpService.deleteImage(image);
+      }
+    } else {
+      this.httpService.storeProduct(this.productForm.value);
+    }
+    this.imagesToBeDeleted = [];
+    this.directorsToBeDeleted = [];
   }
 
   onCancel() {
+    this.imagesToBeDeleted = [];
+    this.directorsToBeDeleted = [];
     this.router.navigate(['../'], {relativeTo: this.route})
   }
 
@@ -132,12 +188,7 @@ export class ProductEditComponent implements OnInit, AfterViewInit {
   onAddImage() {
     (<FormArray>this.productForm.get('images')).push(
       new FormGroup({
-        'id': new FormControl(Math.floor(Math.random() * 1000) + 7),
-        'product': new FormControl(this.productService.getProduct(this.id)),
-        'name': new FormControl('', Validators.required),
-        'path': new FormControl('', Validators.required),
-        'createdAt': new FormControl(''),
-        'updatedAt': new FormControl('')
+        'path': new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(255)]),
       })
     )
   }
@@ -145,11 +196,7 @@ export class ProductEditComponent implements OnInit, AfterViewInit {
   onAddDirector() {
     (<FormArray>this.productForm.get('directors')).push(
       new FormGroup({
-        'id': new FormControl(Math.floor(Math.random() * 1000) + 7),
-        'productId': new FormControl(this.productService.getProduct(this.id)),
-        'name': new FormControl('', Validators.required),
-        'createdAt': new FormControl(''),
-        'updatedAt': new FormControl('')
+        'name': new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(255)]),
       })
     )
   }

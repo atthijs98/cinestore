@@ -19,8 +19,6 @@ import {ShoppingListService} from './components/shopping-list/shopping-list.serv
 import {ProductListComponent} from './components/product/product-list/product-list.component';
 import {ProductService} from './components/product/product.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {ProductDirectorService} from './services/product-director.service';
-import {ProductImageService} from './services/product-image.service';
 import { ContactComponent } from './components/contact/contact.component';
 import { HomeComponent } from './components/home/home.component';
 import {JwtService} from './services/jwt.service';
@@ -56,8 +54,6 @@ import {AppRoutingModule} from './app-routing.module';
   providers: [
     ShoppingListService,
     ProductService,
-    ProductDirectorService,
-    ProductImageService,
     JwtService,
     LocalStorageService,
     GeneralStateService,

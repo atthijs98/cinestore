@@ -15,20 +15,22 @@
       <p style="text-transform: uppercase"> Directed by</p>
       <p style="font-weight: bold"><span *ngFor="let director of product.directors">{{director.name}}</span></p>
       <p>{{product.year | date: 'yyyy'}} | {{product.runtime}} mins<span class="right"
-                                                          style="text-transform: uppercase"><a
-        href="https://www.youtube.com/watch?v=">trailer</a></span></p>
+                                                                         style="text-transform: uppercase"><a
+        class="modal-trigger"
+        href="#modal1">trailer</a></span></p>
       <div class="divider"></div>
       {{product.plot}}
     </div>
   </div>
   <div class="row">
     <div class="col s12">
-      <a class='dropdown-trigger btn' data-target='dropdown1'><i class="material-icons right">arrow_drop_down</i> Manage
-        product</a>
+      <a class='dropdown-trigger btn' data-target='dropdown1'><i class="material-icons right">arrow_drop_down</i>
+        Product
+        beheren</a>
       <ul id='dropdown1' class='dropdown-content'>
-        <li><a (click)="toShoppingList()" style="cursor: pointer">To shopping list</a></li>
-        <li><a (click)="onEditProduct()" style="cursor: pointer">Edit product</a></li>
-        <li><a (click)="onDeleteProduct(product.id)" style="cursor: pointer">Delete product</a></li>
+        <li><a (click)="toShoppingList()" style="cursor: pointer">Toevoegen aan winkelmandje</a></li>
+        <li><a (click)="onEditProduct()" style="cursor: pointer">Product wijzigen</a></li>
+        <li><a (click)="onDeleteProduct(product.id)" style="cursor: pointer">Product verwijderen</a></li>
       </ul>
     </div>
   </div>
@@ -42,6 +44,17 @@
       </div>
     </div>
   </div>
+
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <iframe width="560" height="315" [src]="sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/'+product.trailer+ '?rel=0')" frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" onClick="return false;" class="modal-close waves-effect waves-green btn-flat">Sluiten</a>
+    </div>
+  </div>
+
 </div>
 
 <ng-container *ngIf="mobile">
@@ -65,8 +78,9 @@
           <p style="text-transform: uppercase"> Directed by</p>
           <p style="font-weight: bold"><span *ngFor="let director of product.directors">{{director.name}}</span></p>
           <p>{{product.year | date: 'yyyy'}} | {{product.runtime}} mins<span class="right"
-                                                              style="text-transform: uppercase"><a
-            href="https://www.youtube.com/watch?v=">trailer</a></span></p>
+                                                                             style="text-transform: uppercase"><a
+            class="modal-trigger"
+            href="#modal1">trailer</a></span></p>
           <div class="divider"></div>
           <p class="flow-text">{{product.plot}}</p>
         </div>
@@ -80,15 +94,15 @@
           <a class="btn-floating btn-large waves-effect waves-light red dropdown-trigger right" data-target='dropdown1'><i
             class="material-icons">more_vert</i></a>
           <ul id='dropdown1' class='dropdown-content'>
-            <li><a (click)="toShoppingList()" style="cursor: pointer">To shopping list</a></li>
-            <li><a (click)="onEditProduct()" style="cursor: pointer">Edit product</a></li>
-            <li><a (click)="onDeleteProduct(product.id)" style="cursor: pointer">Delete product</a></li>
+            <li><a (click)="toShoppingList()" style="cursor: pointer">Toevoegen aan winkelmandje</a></li>
+            <li><a (click)="onEditProduct()" style="cursor: pointer">Product wijzigen</a></li>
+            <li><a (click)="onDeleteProduct(product.id)" style="cursor: pointer">Product verwijderen</a></li>
           </ul>
         </div>
       </div>
       <div class="divider"></div>
     </div>
   </div>
-</ng-container>
+  </ng-container>
 
 

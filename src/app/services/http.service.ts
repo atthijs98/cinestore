@@ -6,6 +6,8 @@ import {catchError, tap} from 'rxjs/operators';
 import {ProductService} from '../components/product/product.service';
 import {Observable, throwError} from 'rxjs';
 import Resp from '../interfaces/response.interface';
+import {ProductDirector} from '../shared/product-director.model';
+import {ProductImage} from '../shared/product-image.model';
 
 @Injectable({providedIn: 'root'})
 export class HttpService {
@@ -20,12 +22,11 @@ export class HttpService {
         catchError(this.handleHttpError)
       );
     response.subscribe((data) => {
-      console.log(data.result.products);
       this.productService.setProducts(data.result.products);
     });
   }
 
-  storeProduct(productDetails: {en_title: string, original_title: string, romanized_original_title: string, runtime: string, poster: string, plot: string, year: Date, price:number}):void {
+  storeProduct(productDetails: {en_title: string, original_title: string, romanized_original_title: string, runtime: string, poster: string, plot: string, year: Date, price:number, trailer: string}):void {
     const response: Observable<Resp> = this.http.post<Resp>(`${environment.apiURL}/product`, productDetails)
       .pipe(
         catchError(this.handleHttpError)
@@ -36,12 +37,16 @@ export class HttpService {
 
   }
 
-  updateProduct(id: number, product: any) {
-    this.http
-      .post(`${environment.apiURL}/product/${id}`, JSON.stringify(product)).subscribe(response => {
-        return response;
-      },
-      catchError(this.handleHttpError));
+  updateProduct(id: number, productDetails: {id: number, en_title: string, original_title: string, romanized_original_title: string, runtime: string, poster: string, plot: string, year: Date, price:number, trailer: string,directors: ProductDirector[], images: ProductImage[]} ) {
+    const response: Observable<Resp> = this.http.post<Resp>(`${environment.apiURL}/product/${id}`, productDetails)
+      .pipe(
+        catchError(this.handleHttpError)
+      );
+    response.subscribe((data) => {
+      console.log(data.result);
+      const id = data.result.product.id;
+      this.productService.updateProduct(id, data.result.product);
+    })
   }
 
   deleteProduct(id: number) {
@@ -52,6 +57,26 @@ export class HttpService {
 
     response.subscribe((data) => {
       console.log(data);
+    })
+  }
+
+  deleteImage(id: number) {
+    const response: Observable<Resp> = this.http.delete<Resp>(`${environment.apiURL}/image/${id}`)
+      .pipe(
+          catchError(this.handleHttpError)
+      );
+    response.subscribe((data) => {
+      console.log(data.result);
+    })
+  }
+
+  deleteDirector(id: number) {
+    const response: Observable<Resp> = this.http.delete<Resp>(`${environment.apiURL}/director/${id}`)
+      .pipe(
+          catchError(this.handleHttpError)
+      );
+    response.subscribe((data) => {
+        console.log(data);
     })
   }
 

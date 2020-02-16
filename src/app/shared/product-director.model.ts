@@ -1,17 +1,13 @@
-import {Product} from '../components/product/product.model';
-
 export class ProductDirector {
-  public id: number;
-  public productId: Product;
+  public id?: number;
   public name: string;
-  public createdAt: string;
-  public updatedAt: string;
+  public created_at: Date;
+  public updated_at: Date;
 
-  constructor(id: number, productId: Product, name: string, createdAt: string, updatedAt: string) {
+  constructor(id: number, name: string, created_at: Date, updated_at: Date) {
     this.id = id;
-    this.productId = productId;
     this.name = name;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
+    this.created_at = created_at;
+    this.updated_at = updated_at;
   }
 }

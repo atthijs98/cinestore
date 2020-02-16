@@ -2,14 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {ProductService} from './product.service';
 import {Product} from './product.model';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ProductImageService} from '../../services/product-image.service';
 import {GeneralStateService} from '../../services/general-state.service';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss'],
-  providers: [ProductImageService]
+  styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
   private readonly MENU_VISIBLE: boolean = true;

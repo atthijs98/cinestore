@@ -9,25 +9,7 @@ export class ShoppingListService {
   itemsChanged = new Subject<Item[]>();
   startedEditing = new Subject<number>();
 
-  private items: Item[] = [
-    new Item(
-      1,
-      1,
-      new Product(
-        1,
-        'Persona',
-        null,
-        null,
-        '85',
-        'https://s3.amazonaws.com/criterion-production/films/d5c135c95f58e74e2ee28cb92659bafd/DoD5SlisIFjKyi0zucupnwj2B3ADGy_large.jpg',
-        'A young nurse, Alma, is put in charge of Elisabeth Vogler: an actress who is seemingly healthy in all respects, but will not talk. As they spend time together, Alma speaks to Elisabeth constantly, never receiving any answer. Alma eventually confesses her secrets to a seemingly sympathetic Elisabeth and finds that her own personality is being submerged into Elisabeth’s persona.',
-        '1966',
-        8.99,
-        '31-12-2019',
-        '31-12-2019'
-      )
-    )
-  ];
+  private items: Item[] = [];
 
 
   getProducts() {
