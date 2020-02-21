@@ -45,3 +45,13 @@ $medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width 
     }
   }
 }
+
+div.modal {
+  div.modal-content {
+    padding: 0;
+    iframe {
+      width: 100%;
+      height: 350px;
+    }
+  }
+}

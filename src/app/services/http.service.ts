@@ -37,7 +37,7 @@ export class HttpService {
 
   }
 
-  updateProduct(id: number, productDetails: {id: number, en_title: string, original_title: string, romanized_original_title: string, runtime: string, poster: string, plot: string, year: Date, price:number, trailer: string,directors: ProductDirector[], images: ProductImage[]} ) {
+  updateProduct(id: number, productDetails: {id: number, en_title: string, original_title: string, romanized_original_title: string, runtime: string, poster: string, plot: string, year: Date, price:number, trailer: string}):void {
     const response: Observable<Resp> = this.http.post<Resp>(`${environment.apiURL}/product/${id}`, productDetails)
       .pipe(
         catchError(this.handleHttpError)

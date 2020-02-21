@@ -155,6 +155,7 @@ export class ProductEditComponent implements OnInit, AfterViewInit {
           this.httpService.deleteImage(image);
       }
     } else {
+      console.log("joagf");
       this.httpService.storeProduct(this.productForm.value);
     }
     this.imagesToBeDeleted = [];
